@@ -5,18 +5,19 @@
     <title>Update User</title>
 </head>
 <body>
-<form th:action="@{/update_user/{id}}" th:object="${user}" method="get">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{getId()}" id="id" placeholder="ID">
+<form th:method="POST" th:action="@{/update_user/}" th:object="${userId}">
+    <input type="hidden" th:field="*{id}" />
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name">
     <br/>
-    <label for="name">First name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="First Name">
+
+    <label for="lastname">Enter lastname: </label>
+    <input type="text" th:field="*{lastname}" id="lastname">
     <br/>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastname}" id="lastName" placeholder="Last Name">
-    <br/>
-    <input type="submit" value="Update User">
+
+    <input type="submit" value="Update">
 </form>
+<br>
 
 <form th:action="@{/}" th:method="GET">
     <button type="submit">All user</button>
