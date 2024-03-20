@@ -5,8 +5,10 @@
     <title>Delete User</title>
 </head>
 <body>
+
 <form th:method="POST" th:action="@{/delete_user}" th:object="${userId}">
     <label for="id">Enter ID: </label>
+<!--    <input type="hidden" th:field="*{id}">-->
     <input type="number" th:field="*{id}" id="id">
 
     <br/>

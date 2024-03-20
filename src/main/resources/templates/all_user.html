@@ -9,9 +9,9 @@
 <form th:action="@{/creat_user}" th:method="GET">
     <button type="submit">Add user</button>
 </form>
-<form th:action="@{/delete_user}" th:method="GET">
-    <button type="submit">Delete user</button>
-</form>
+<!--<form th:action="@{/delete_user}" th:method="GET">-->
+<!--    <button type="submit">Delete user</button>-->
+<!--</form>-->
 
 <br>
 
@@ -22,6 +22,7 @@
         <th>Name</th>
         <th>Lastname</th>
         <th>Actions</th>
+        <th>Actions</th>
 
     </tr>
     <br/>
@@ -30,7 +31,8 @@
         <td th:text="${u.getId()}"></td>
         <td th:text="${u.getName()}"></td>
         <td th:text="${u.getLastname()}"></td>
-        <td><a th:href="@{/update_user/(id=${u.id})}" class="btn btn-primary"> Update</a>
+        <td><a th:href="@{/update_user(id=${u.id})}" class="btn btn-primary"> Update</a>
+        <td><a th:href="@{/delete_user(id=${u.id})}" class="btn btn-primary"> Delete</a>
         <td>
         <td>
     </tr>
