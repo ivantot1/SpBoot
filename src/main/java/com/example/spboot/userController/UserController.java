@@ -1,4 +1,4 @@
-package com.example.spboot.controller;
+package com.example.spboot.userController;
 
 import com.example.spboot.model.User;
 import com.example.spboot.service.UserService;
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,16 +45,18 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/update_user/{id}")
-    public String updateUserForm(@PathVariable("id") int id, Model model){
+    @GetMapping("/update_user")
+    public ModelAndView update(@RequestParam("id") int id) {
+        ModelAndView modelAndView = new ModelAndView("update_user");
         User user = userService.getUser(id);
-        model.addAttribute("user", user);
-        return "/update_user";
+        modelAndView.addObject("userId", user);
+        return modelAndView;
     }
 
     @PostMapping("/update_user")
-    public String update(User user){
-        userService.addUser(user);
+    public String update(@RequestParam("id") int id, @ModelAttribute("userUp") User user) {
+        user.setId(id);
+        userService.updateUser(id, user);
         return "redirect:/";
     }
 
@@ -71,8 +72,3 @@ public class UserController {
         return "redirect:/";
     }
 }
-
-
-
-
-
